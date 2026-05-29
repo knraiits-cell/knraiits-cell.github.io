@@ -1,0 +1,26 @@
+/*
+  # Strong security defaults. When the site is hosted on Netlify / Cloudflare
+  # Pages / similar, these get sent as real HTTP response headers.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-XSS-Protection: 1; mode=block
+  X-Permitted-Cross-Domain-Policies: none
+  X-Robots-Tag: index, follow
+  X-Author: Krishna Nand Rai (K.N. Rai / Khalil Asgar)
+  X-Canonical: https://netineticharaiveticharaiveti.in/
+  X-Fingerprint: KNR-NNCC-IN-2025-Q2
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable

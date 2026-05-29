@@ -1,0 +1,9 @@
+Contact: mailto:knraiits@gmail.com
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, hi
+Canonical: https://netineticharaiveticharaiveti.in/.well-known/security.txt
+Policy: https://netineticharaiveticharaiveti.in/
+
+# Please report security issues, abuse, or clones of this site to the
+# address above. Authentic site is netineticharaiveticharaiveti.in.
+# Author: Krishna Nand Rai (K.N. Rai · Khalil Asgar · ख़लील अस्गर).
