@@ -3,35 +3,108 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mirror site — K.N. Rai · Khalil Asgar</title>
-<meta name="description" content="If the main site is unreachable, use the mirror at oarfish-gar-nx5a.squarespace.com." />
-<meta http-equiv="refresh" content="6; url=https://knraiits-cell.github.io/netineti-mirror" />
+<title>Offline · K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti</title>
+<meta name="description" content="You appear to be offline. This page works without a network." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#14134d" />
 <link rel="canonical" href="https://netineticharaiveticharaiveti.in/" />
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="assets/favicon-180.png" />
 <style>
   :root { color-scheme: dark; }
-  html, body { margin: 0; padding: 0; background: #040428; color: #f3c2f3; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; min-height: 100vh; }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 80px 24px; text-align: center; }
-  h1 { font-weight: 400; font-size: clamp(28px, 4vw, 44px); color: #ffe9ff; margin: 0 0 20px; letter-spacing: -0.01em; }
-  p { color: rgba(243, 194, 243, 0.7); margin: 0 0 16px; }
-  a.btn { display: inline-block; margin-top: 14px; padding: 12px 22px; background: #eb9cff; color: #040428; text-decoration: none; border-radius: 999px; font-weight: 600; letter-spacing: 0.02em; }
-  a.btn:hover { background: #f2c2f3; }
-  .alt { display: block; margin-top: 24px; color: rgba(243, 194, 243, 0.5); font-size: 14px; }
-  .alt a { color: #f2c2f3; }
-  .hi { margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(243, 194, 243, 0.14); font-family: "Hind", system-ui, sans-serif; }
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+  body {
+    background: linear-gradient(180deg, #040428 0%, #14134d 60%, #5b4e71 100%) fixed;
+    color: #f3c2f3;
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .wrap { max-width: 620px; width: 100%; text-align: center; }
+  .mark {
+    width: 84px; height: 84px; margin: 0 auto 28px;
+    border: 1.4px solid rgba(243, 194, 243, 0.5); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.03);
+  }
+  .mark svg { width: 44px; height: 44px; stroke: #eb9cff; }
+  h1 {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-weight: 400; font-size: clamp(28px, 5vw, 44px);
+    color: #ffe9ff; margin: 0 0 12px; letter-spacing: -0.01em;
+  }
+  .sub { color: rgba(243, 194, 243, 0.78); margin: 0 0 8px; }
+  .quote {
+    margin: 30px auto; padding: 24px 20px;
+    border-top: 1px solid rgba(243, 194, 243, 0.18);
+    border-bottom: 1px solid rgba(243, 194, 243, 0.18);
+    font-style: italic; color: #f2c2f3;
+    max-width: 480px;
+  }
+  .quote strong { display: block; font-style: normal; color: #eb9cff; margin-bottom: 4px; }
+  .btns { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-block; padding: 12px 22px;
+    background: #eb9cff; color: #040428;
+    text-decoration: none; border-radius: 999px;
+    font-weight: 600; letter-spacing: 0.02em;
+    border: 0; cursor: pointer; font-size: 15px;
+    transition: background .2s;
+  }
+  .btn:hover { background: #f2c2f3; }
+  .btn.ghost { background: transparent; color: #f2c2f3; border: 1px solid rgba(243, 194, 243, 0.4); }
+  .btn.ghost:hover { background: rgba(255,255,255,0.06); }
+  .alts {
+    margin-top: 36px; padding-top: 24px;
+    border-top: 1px solid rgba(243, 194, 243, 0.14);
+    color: rgba(243, 194, 243, 0.55); font-size: 13px;
+  }
+  .alts a { color: #f2c2f3; text-decoration: underline; text-underline-offset: 3px; }
+  .alts ul { list-style: none; padding: 0; margin: 8px 0 0; }
+  .alts li { margin: 4px 0; }
+  .lang-hi { margin-top: 22px; font-family: system-ui, "Mangal", sans-serif; color: rgba(243, 194, 243, 0.7); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>You're on the mirror page.</h1>
-  <p>The main site is <strong style="color:#ffe9ff">netineticharaiveticharaiveti.in</strong> — authored by Krishna Nand Rai (K.N. Rai · Khalil Asgar).</p>
-  <p>If the main site is unreachable, the mirror at Squarespace will load shortly.</p>
-  <a class="btn" href="https://knraiits-cell.github.io/netineti-mirror">Open mirror now</a>
-  <span class="alt">Or return to the <a href="/">main site</a>.</span>
-
-  <div class="hi">
-    <p>यह वैकल्पिक पृष्ठ है। मुख्य स्थल <strong>netineticharaiveticharaiveti.in</strong> है।</p>
-    <p>यदि मुख्य स्थल न खुले तो स्क्वेयरस्पेस वैकल्पिक स्थल कुछ ही क्षणों में खुल जाएगा।</p>
+  <div class="mark" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.4" />
+      <path d="M11 28 L11 12 L29 28 L29 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
+
+  <h1>You are offline.</h1>
+  <p class="sub">The network seems unreachable right now. That's fine — this page already lives on your device.</p>
+
+  <div class="quote">
+    <strong>नेति नेति · चरैवेति चरैवेति</strong>
+    Not this, not this. Keep moving, keep moving.
+  </div>
+
+  <div class="btns">
+    <button class="btn" onclick="location.reload()">Try again</button>
+    <a class="btn ghost" href="./">Go home</a>
+  </div>
+
+  <div class="alts">
+    If the main site is unreachable, try one of the mirrors when you are back online:
+    <ul>
+      <li><a href="https://netineticharaiveticharaiveti.in/">netineticharaiveticharaiveti.in</a> (main)</li>
+      <li><a href="https://knraiits-cell.github.io/">knraiits-cell.github.io</a> (alt)</li>
+      <li><a href="https://knraiits-cell.github.io/netineti-mirror/">knraiits-cell.github.io/netineti-mirror</a> (DR mirror)</li>
+    </ul>
+  </div>
+
+  <p class="lang-hi">
+    आप अभी ऑफ़लाइन हैं। यह पन्ना आपके यंत्र पर पहले से सुरक्षित है। नेटवर्क लौटने पर पुनः प्रयास कीजिए।
+  </p>
 </div>
+
+<script>
+  // Auto-retry once the network returns
+  window.addEventListener("online", () => location.reload());
+</script>
 </body>
 </html>

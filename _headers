@@ -1,7 +1,7 @@
 /*
-  # Strong security defaults. When the site is hosted on Netlify / Cloudflare
-  # Pages / similar, these get sent as real HTTP response headers.
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  # Strong security defaults — sent as real HTTP response headers on
+  # Netlify / Cloudflare Pages / Vercel and most modern static hosts.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; manifest-src 'self'; worker-src 'self'; connect-src 'self' https://knraiits-cell.github.io/netineti-mirror; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -11,11 +11,14 @@
   Cross-Origin-Resource-Policy: same-origin
   X-XSS-Protection: 1; mode=block
   X-Permitted-Cross-Domain-Policies: none
-  X-Robots-Tag: index, follow
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
   X-Author: Krishna Nand Rai (K.N. Rai / Khalil Asgar)
   X-Canonical: https://netineticharaiveticharaiveti.in/
   X-Fingerprint: KNR-NNCC-IN-2025-Q2
+  # Allow PWA installation from any device
+  Service-Worker-Allowed: /
 
+# Assets are content-addressed by the build version; safe to cache forever.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
@@ -24,3 +27,20 @@
 
 /js/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Service worker must not be cached — browsers need to see updates quickly.
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /
+
+# Manifest can be cached for a day; rarely changes.
+/manifest.webmanifest
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
+
+# HTML — short cache, always re-validate
+/index.html
+  Cache-Control: public, max-age=600, must-revalidate
+
+/
+  Cache-Control: public, max-age=600, must-revalidate

@@ -153,8 +153,18 @@ const LANG_KEY = "knrai.lang";
 const VALID = new Set(["en", "hi"]);
 
 function detectInitialLang() {
-  const saved = localStorage.getItem(LANG_KEY);
-  if (saved && VALID.has(saved)) return saved;
+  // 1. URL ?lang= takes top priority — share-friendly links like ?lang=hi
+  try {
+    const params = new URLSearchParams(location.search);
+    const q = (params.get("lang") || "").toLowerCase();
+    if (VALID.has(q)) return q;
+  } catch (e) { /* old browser — no URLSearchParams */ }
+  // 2. Last user choice (this browser, this device)
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && VALID.has(saved)) return saved;
+  } catch (e) { /* localStorage may throw in privacy mode */ }
+  // 3. Browser locale
   const browser = (navigator.language || "en").toLowerCase();
   if (browser.startsWith("hi")) return "hi";
   return "en";
@@ -183,7 +193,7 @@ function applyLang(lang) {
     btn.setAttribute("aria-pressed", String(active));
   });
 
-  localStorage.setItem(LANG_KEY, lang);
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* private mode */ }
 }
 
 document.querySelectorAll(".lang-btn").forEach((btn) => {

@@ -1,30 +1,32 @@
-# netineticharaiveticharaiveti.in — robots policy
-# Authentic site of Krishna Nand Rai (K.N. Rai · Khalil Asgar · ख़लील अस्गर)
+# robots.txt for https://netineticharaiveticharaiveti.in
+# Authored by Krishna Nand Rai (K.N. Rai · Khalil Asgar · ख़लील अस्गर)
+# Authentic origin: https://netineticharaiveticharaiveti.in/
 
 User-agent: *
 Allow: /
-Disallow: /_qa_*
-Disallow: /.git/
 
-# Block known content-scraping AI training crawlers that ignore licence terms.
-# (Legitimate search and assistant crawlers are still allowed above.)
+# Friendly to common indexers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI training crawlers — allowed (this is a personal site, public on purpose).
+# If you ever want to opt out, change the directives below to Disallow: /
 User-agent: GPTBot
-Disallow: /
-User-agent: CCBot
-Disallow: /
-User-agent: anthropic-ai
-Disallow: /
+Allow: /
+
 User-agent: ClaudeBot
-Disallow: /
-User-agent: Google-Extended
-Disallow: /
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
-User-agent: Amazonbot
-Disallow: /
-User-agent: FacebookBot
-Disallow: /
-User-agent: Bytespider
-Disallow: /
+
+User-agent: Google-Extended
+Allow: /
 
 Sitemap: https://netineticharaiveticharaiveti.in/sitemap.xml
