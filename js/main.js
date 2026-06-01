@@ -89,6 +89,7 @@ const MIRROR_URL = "https://knraiits-cell.github.io/netineti-mirror";
 
   function showMirrorBanner(reason) {
     if (shown) return;
+    if (!MIRROR_URL) return; // mirror site — nothing to fall over to
     shown = true;
     const isHi = document.documentElement.getAttribute("data-lang") === "hi";
     const msg = isHi

@@ -939,3 +939,25 @@ html[data-lang="hi"] .footer-disclaimer strong { text-transform: none; letter-sp
   .section-head { flex-wrap: wrap; gap: var(--s-3); }
   .section-title::after { display: none; }
 }
+
+/* ─── DR mirror ribbon ─────────────────────────────────────────────────
+   Rendered only on mirror variants (see variants.json). The rule is harmless
+   on variants where the element isn't emitted.
+─────────────────────────────────────────────────────────────────────── */
+.dr-ribbon{
+  position:sticky; top:0; z-index:9999;
+  background:linear-gradient(90deg,#5b2a86,#7b3fb8);
+  color:#fff; font:600 13px/1 'Inter',system-ui,sans-serif;
+  text-align:center; padding:10px 16px;
+  letter-spacing:.01em; box-shadow:0 1px 0 rgba(0,0,0,.2);
+}
+.dr-ribbon a{
+  color:#fff; text-decoration:underline; text-underline-offset:3px;
+  font-weight:700;
+}
+.dr-ribbon .sep{opacity:.6; margin:0 8px;}
+@media (max-width:560px){
+  .dr-ribbon{font-size:12px; padding:8px 12px; line-height:1.35;}
+  .dr-ribbon .sep{display:none;}
+  .dr-ribbon a{display:block; margin-top:4px;}
+}
