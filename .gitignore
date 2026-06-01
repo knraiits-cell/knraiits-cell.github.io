@@ -1,3 +1,4 @@
 _qa_*.png
 .DS_Store
 node_modules/
+_build/

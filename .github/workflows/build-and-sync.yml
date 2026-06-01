@@ -1,0 +1,112 @@
+name: Build & Sync (all four jurisdictions)
+
+# Runs on every push to main (except commits the workflow itself makes).
+# It rebuilds every variant from _source/, then:
+#   - publishes _build/main/ at the repo root (the GitHub Pages site)
+#   - pushes _build/mirror/ into the netineti-mirror repo
+#   - uploads _build/perplexity_*/ as downloadable artifacts
+#
+# To enable cross-repo sync to netineti-mirror, create a fine-grained
+# Personal Access Token with "Contents: Read and write" on the
+# netineti-mirror repo and save it as the repo secret  MIRROR_PUSH_TOKEN.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_source/**"
+      - ".github/workflows/build-and-sync.yml"
+  workflow_dispatch:        # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-sync
+  cancel-in-progress: false
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main-site repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build all four variants
+        run: python3 _source/build.py
+
+      # ── 1. Publish _build/main/ at the repo root ────────────────────────
+      - name: Sync _build/main/ → repo root
+        run: |
+          set -euxo pipefail
+          # rsync would be cleaner but bare cp keeps the dependency footprint nil.
+          # We delete every previously-published path that build emits, then re-copy.
+          rm -rf css js assets _headers humans.txt offline.html robots.txt index.html .nojekyll
+          cp -r _build/main/. ./
+          # don't carry _build/ itself into the published tree
+          rm -rf _build
+
+      - name: Commit & push published main site
+        run: |
+          set -euxo pipefail
+          git config user.name  "netineti-bot"
+          git config user.email "knraiits@gmail.com"
+          if git diff --quiet ; then
+            echo "no changes to publish"
+            exit 0
+          fi
+          git add -A
+          git commit -m "build: sync main site from _source/ [skip ci]"
+          git push
+
+      # ── 2. Push _build/mirror/ to the netineti-mirror repo ──────────────
+      # We rebuild first (the previous step deleted _build/) and then push using
+      # the MIRROR_PUSH_TOKEN secret.
+      - name: Rebuild for mirror push
+        run: python3 _source/build.py --variant mirror
+
+      - name: Push mirror to netineti-mirror repo
+        env:
+          MIRROR_PUSH_TOKEN: ${{ secrets.MIRROR_PUSH_TOKEN }}
+        run: |
+          set -euxo pipefail
+          if [ -z "${MIRROR_PUSH_TOKEN:-}" ]; then
+            echo "MIRROR_PUSH_TOKEN secret is not set — skipping mirror push."
+            echo "To enable: create a fine-grained PAT with 'Contents: Read and write' on knraiits-cell/netineti-mirror and save as MIRROR_PUSH_TOKEN."
+            exit 0
+          fi
+          cd /tmp
+          rm -rf netineti-mirror
+          git clone "https://x-access-token:${MIRROR_PUSH_TOKEN}@github.com/knraiits-cell/netineti-mirror.git"
+          cd netineti-mirror
+          # wipe everything except .git, then copy the mirror build over
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r "$GITHUB_WORKSPACE/_build/mirror/." ./
+          git config user.name  "netineti-bot"
+          git config user.email "knraiits@gmail.com"
+          git add -A
+          if git diff --cached --quiet ; then
+            echo "mirror unchanged — nothing to push"
+            exit 0
+          fi
+          git commit -m "sync: rebuild mirror from canonical _source/ [skip ci]"
+          git push
+
+      # ── 3. Upload Perplexity bundles as downloadable artifacts ──────────
+      - name: Rebuild Perplexity bundles
+        run: python3 _source/build.py --variant perplexity_primary perplexity_dr
+
+      - name: Upload Perplexity bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: perplexity-bundles
+          path: |
+            _build/perplexity_primary/
+            _build/perplexity_dr/
+          retention-days: 30

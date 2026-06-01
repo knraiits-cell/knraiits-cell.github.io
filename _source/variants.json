@@ -1,0 +1,89 @@
+{
+  "_comment": "Single source of truth for all 4 jurisdictions. Edit content here, run build.py, every site stays in sync.",
+
+  "shared": {
+    "fingerprint_base": "KNR-NNCC-IN-2025-Q2",
+    "canonical_url": "https://netineticharaiveticharaiveti.in",
+    "main_github_url": "https://knraiits-cell.github.io",
+    "mirror_github_url": "https://knraiits-cell.github.io/netineti-mirror",
+    "author_email": "knraiits@gmail.com"
+  },
+
+  "variants": {
+    "main": {
+      "_purpose": "Primary GitHub Pages site at knraiits-cell.github.io (and CNAMEd to netineticharaiveticharaiveti.in)",
+      "title": "K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large",
+      "robots_extra_meta": "",
+      "csp_connect_src": "'self' https://knraiits-cell.github.io/netineti-mirror",
+      "fingerprint_suffix": "",
+      "is_mirror": false,
+      "show_dr_ribbon": false,
+      "frame_bust_target": "https://netineticharaiveticharaiveti.in/",
+      "frame_bust_top_target": "https://netineticharaiveticharaiveti.in/",
+      "mirror_url_js": "https://knraiits-cell.github.io/netineti-mirror",
+      "schema_same_as_mirror": true,
+      "footer_mirror_block": "main_points_to_mirror",
+      "watermark_section_suffix": ""
+    },
+
+    "mirror": {
+      "_purpose": "GitHub Pages disaster-recovery mirror at knraiits-cell.github.io/netineti-mirror",
+      "title": "Mirror · K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large",
+      "robots_extra_meta": "<meta name=\"robots\" content=\"noindex, follow\" />",
+      "csp_connect_src": "'self'",
+      "fingerprint_suffix": "-DR-MIRROR",
+      "is_mirror": true,
+      "show_dr_ribbon": true,
+      "dr_ribbon_text_en": "This is the mirror site.",
+      "dr_ribbon_text_hi": "यह वैकल्पिक (मिरर) स्थल है।",
+      "dr_ribbon_link_text_en": "Open main site → netineticharaiveticharaiveti.in",
+      "dr_ribbon_link_text_hi": "मुख्य स्थल खोलें → netineticharaiveticharaiveti.in",
+      "frame_bust_target": "self",
+      "frame_bust_top_target": "self",
+      "mirror_url_js": null,
+      "schema_same_as_mirror": false,
+      "footer_mirror_block": "mirror_points_to_main",
+      "watermark_section_suffix": "-DR-MIRROR"
+    },
+
+    "perplexity_primary": {
+      "_purpose": "Perplexity-hosted alternate primary (used as additional resilience layer)",
+      "title": "K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti (alt)",
+      "robots": "noindex, follow",
+      "robots_extra_meta": "",
+      "csp_connect_src": "'self' https://knraiits-cell.github.io/netineti-mirror https://*.perplexity.ai",
+      "fingerprint_suffix": "-PPLX-PRIMARY",
+      "is_mirror": false,
+      "show_dr_ribbon": false,
+      "frame_bust_target": "https://netineticharaiveticharaiveti.in/",
+      "frame_bust_top_target": "https://netineticharaiveticharaiveti.in/",
+      "mirror_url_js": "https://knraiits-cell.github.io/netineti-mirror",
+      "schema_same_as_mirror": true,
+      "footer_mirror_block": "main_points_to_mirror",
+      "watermark_section_suffix": "-PPLX"
+    },
+
+    "perplexity_dr": {
+      "_purpose": "Perplexity-hosted DR mirror — third resilience layer",
+      "title": "Mirror · K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti (alt-DR)",
+      "robots": "noindex, follow",
+      "robots_extra_meta": "",
+      "csp_connect_src": "'self' https://*.perplexity.ai",
+      "fingerprint_suffix": "-PPLX-DR",
+      "is_mirror": true,
+      "show_dr_ribbon": true,
+      "dr_ribbon_text_en": "This is an alternate mirror.",
+      "dr_ribbon_text_hi": "यह वैकल्पिक (मिरर) स्थल है।",
+      "dr_ribbon_link_text_en": "Open main site → netineticharaiveticharaiveti.in",
+      "dr_ribbon_link_text_hi": "मुख्य स्थल खोलें → netineticharaiveticharaiveti.in",
+      "frame_bust_target": "self",
+      "frame_bust_top_target": "self",
+      "mirror_url_js": null,
+      "schema_same_as_mirror": false,
+      "footer_mirror_block": "mirror_points_to_main",
+      "watermark_section_suffix": "-PPLX-DR"
+    }
+  }
+}
