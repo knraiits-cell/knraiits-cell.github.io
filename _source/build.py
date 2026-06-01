@@ -163,6 +163,13 @@ def build_variant(name: str, v: dict, template_html: str, template_js: str, css:
     if src_redirects.exists():
         shutil.copy2(src_redirects, out / "_redirects")
 
+    # CNAME (GitHub Pages custom domain) — only for the 'main' variant,
+    # which is the one served at the custom domain. Mirror/Perplexity
+    # builds must NOT contain a CNAME or GitHub Pages will reject them.
+    src_cname = ROOT / "CNAME"
+    if src_cname.exists() and name == "main":
+        shutil.copy2(src_cname, out / "CNAME")
+
     # ── render _headers per variant ─────────────────────────────────────
     headers_tpl = (ROOT / "_headers.template").read_text(encoding="utf-8")
     headers_out = (headers_tpl
