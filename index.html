@@ -18,8 +18,9 @@
 <!-- ─── Security headers (meta-equivalents; HTTP headers added via _headers) ───
      Content-Security-Policy limits where scripts, styles, images and frames can
      come from. We allow self + Google Fonts (CSS + woff2) + the linked social
-     image hosts only where strictly needed. frame-ancestors blocks clickjacking;
-     base-uri locks the <base> tag; form-action limits where forms may post. -->
+     image hosts only where strictly needed. (frame-ancestors is delivered via
+     the HTTP _headers file — meta-CSP cannot enforce it.) base-uri locks the
+     <base> tag; form-action limits where forms may post. -->
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'self';
                script-src 'self' 'unsafe-inline';
@@ -29,7 +30,6 @@
                manifest-src 'self';
                worker-src 'self';
                connect-src 'self' https://knraiits-cell.github.io/netineti-mirror;
-               frame-ancestors 'none';
                base-uri 'self';
                form-action 'self';
                object-src 'none';
