@@ -2,7 +2,16 @@
 <html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#14134d" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#14134d" />
+<meta name="color-scheme" content="dark light" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="K.N. Rai" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="K.N. Rai" />
 <title>{{TITLE}}</title>
 <meta name="description" content="Krishna Nand Rai (KNR), writing music as Khalil Asgar (ख़लील अस्गर) — public servant, strategist, life coach, musician. Bilingual personal site in English and Hindi. Neti neti, charaiveti charaiveti." />
 
@@ -13,10 +22,12 @@
      base-uri locks the <base> tag; form-action limits where forms may post. -->
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'self';
-               script-src 'self';
+               script-src 'self' 'unsafe-inline';
                style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
                font-src 'self' https://fonts.gstatic.com data:;
                img-src 'self' data: https:;
+               manifest-src 'self';
+               worker-src 'self';
                connect-src {{CSP_CONNECT_SRC}};
                frame-ancestors 'none';
                base-uri 'self';
@@ -36,11 +47,34 @@
 <meta name="canonical-author" content="KNR · Khalil Asgar · ख़लील अस्गर" />
 <link rel="canonical" href="https://netineticharaiveticharaiveti.in/" />
 <link rel="author" href="https://linktr.ee/knrai" />
+<link rel="alternate" hreflang="en" href="https://netineticharaiveticharaiveti.in/" />
+<link rel="alternate" hreflang="hi" href="https://netineticharaiveticharaiveti.in/?lang=hi" />
+<link rel="alternate" hreflang="x-default" href="https://netineticharaiveticharaiveti.in/" />
+
+<!-- Favicons & PWA -->
+<link rel="icon" href="assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="16x16"  href="assets/favicon-16.png" />
+<link rel="icon" type="image/png" sizes="32x32"  href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png" />
+<link rel="mask-icon" href="assets/favicon.ico" color="#eb9cff" />
+<link rel="manifest" href="manifest.webmanifest" />
+
+<!-- Resource hints — reduce time-to-first-paint on slow networks -->
+<link rel="preload" as="style" href="css/style.css" />
+<link rel="preload" as="image" href="assets/knrai-400.webp" type="image/webp" fetchpriority="high" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti" />
 <meta property="og:description" content="Public servant, strategist, life coach, musician. Writing as Khalil Asgar (ख़लील अस्गर). Bilingual: English / हिन्दी." />
-<meta property="og:image" content="assets/knrai.jpg" />
+<meta property="og:image" content="assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti" />
+<meta name="twitter:description" content="Public servant, strategist, life coach, musician. Bilingual EN/हिं." />
+<meta name="twitter:image" content="assets/og-image.jpg" />
+<meta name="twitter:site" content="@knrai_its" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://netineticharaiveticharaiveti.in" />
 <meta property="og:locale" content="en_IN" />
@@ -51,7 +85,9 @@
      Hind (body Hindi) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&family=Roboto+Slab:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&family=Roboto+Slab:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Hind:wght@300;400;500;600&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&family=Roboto+Slab:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&family=Roboto+Slab:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="css/style.css" />
 
@@ -142,7 +178,11 @@
   </div>
   <div class="hero-portrait">
     <div class="portrait-ring" aria-hidden="true"></div>
-    <img src="assets/knrai.jpg" alt="Portrait of Krishna Nand Rai (Khalil Asgar)" />
+    <picture>
+      <source srcset="assets/knrai-200.webp 1x, assets/knrai-400.webp 2x" type="image/webp" media="(max-width: 600px)" />
+      <source srcset="assets/knrai-400.webp" type="image/webp" />
+      <img src="assets/knrai.jpg" alt="Portrait of Krishna Nand Rai (Khalil Asgar)" width="400" height="400" loading="eager" decoding="async" fetchpriority="high" />
+    </picture>
     <div class="portrait-caption">
       <span class="dot"></span>
       <span data-en="KNR · Khalil Asgar" data-hi="के.एन.आर. · ख़लील अस्गर">KNR · Khalil Asgar</span>
@@ -531,6 +571,22 @@
   <span>KNR</span><span>Krishna Nand Rai</span><span>Khalil Asgar</span><span>ख़लील अस्गर</span><span>कृष्ण नंद राय</span><span>netineticharaiveticharaiveti.in</span><span>© KNR 2025 — all rights reserved</span><span>canonical: netineticharaiveticharaiveti.in</span><span>fingerprint: KNR-NNCC-IN-2025-Q2{{FP_SUFFIX}}</span><span>permanent address: Village Anjorpur, District Ballia, Uttar Pradesh, Bharat — PIN 277502</span><span>currently in Rourkela, Odisha, India</span><span>authored by K.N. Rai · Krishna Nand Rai · Khalil Asgar</span><span>नेति नेति। चरैवेति चरैवेति।</span><span>charan vai madhu vindati</span>
 </div>
 
+<!-- ─── No-JS fallback notice (only shown when JS is disabled) ──────── -->
+<noscript>
+  <style>.lang-toggle{display:none}[data-en]:not([data-hi-only]){}[data-hi]{display:none}</style>
+  <div style="background:#14134d;color:#f3c2f3;padding:10px;text-align:center;font:14px/1.4 system-ui,sans-serif;border-bottom:1px solid rgba(243,194,243,.3)">
+    JavaScript is disabled. The site still works in English. Enable JS for the language toggle (EN / हिं).
+  </div>
+</noscript>
+
 <script src="js/main.js" defer></script>
+<script>
+  // ── Register service worker for offline + speed ──────────────────────
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+      navigator.serviceWorker.register("sw.js").catch(function(e){ console.warn("SW reg failed:", e); });
+    });
+  }
+</script>
 </body>
 </html>

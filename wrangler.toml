@@ -1,0 +1,12 @@
+# Cloudflare Pages config — when you set up the project in the CF dashboard,
+# point it at this repo. The dashboard will use these defaults.
+#
+# Build command:        python3 _source/build.py --variant main
+# Build output dir:     _build/main
+# Production branch:    main
+# Environment vars:
+#   PYTHON_VERSION = 3.11
+
+name = "netineti"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "_build/main"

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>{{BASE_URL}}/</loc>
+    <lastmod>{{LASTMOD}}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="{{BASE_URL}}/" />
+    <xhtml:link rel="alternate" hreflang="hi"        href="{{BASE_URL}}/?lang=hi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{BASE_URL}}/" />
+  </url>
+  <url>
+    <loc>{{BASE_URL}}/#about</loc>
+    <lastmod>{{LASTMOD}}</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{BASE_URL}}/#work</loc>
+    <lastmod>{{LASTMOD}}</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{BASE_URL}}/#music</loc>
+    <lastmod>{{LASTMOD}}</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>{{BASE_URL}}/#wisdom</loc>
+    <lastmod>{{LASTMOD}}</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>{{BASE_URL}}/#connect</loc>
+    <lastmod>{{LASTMOD}}</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>

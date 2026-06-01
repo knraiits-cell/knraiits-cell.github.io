@@ -1,0 +1,32 @@
+# robots.txt for {{BASE_URL}}
+# Authored by Krishna Nand Rai (K.N. Rai · Khalil Asgar · ख़लील अस्गर)
+# Authentic origin: https://netineticharaiveticharaiveti.in/
+
+User-agent: *
+{{ROBOTS_RULES}}
+
+# Friendly to common indexers
+User-agent: Googlebot
+{{ROBOTS_RULES}}
+
+User-agent: Bingbot
+{{ROBOTS_RULES}}
+
+User-agent: DuckDuckBot
+{{ROBOTS_RULES}}
+
+# AI training crawlers — allowed (this is a personal site, public on purpose).
+# If you ever want to opt out, change the directives below to Disallow: /
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: {{BASE_URL}}/sitemap.xml

@@ -1,0 +1,15 @@
+# Netlify / Cloudflare Pages style redirects.
+# Anyone who lands on /mirror, /dr, /alt, etc gets routed to the right place.
+
+/mirror   https://knraiits-cell.github.io/netineti-mirror   302
+/dr       https://knraiits-cell.github.io/netineti-mirror   302
+/alt      https://knraiits-cell.github.io/netineti-mirror   302
+/links    https://linktr.ee/knrai                          302
+/yt       https://www.youtube.com/@KNR_knrai               302
+/suno     https://suno.com/@knrai                          302
+/x        https://x.com/knrai_its                           302
+/insta    https://www.instagram.com/knraikn                 302
+
+# Single-page fallback: any unknown path → index.html with 200
+# (so deep links like /#music keep working even if rewritten)
+/*        /index.html   200

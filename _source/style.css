@@ -961,3 +961,27 @@ html[data-lang="hi"] .footer-disclaimer strong { text-transform: none; letter-sp
   .dr-ribbon .sep{display:none;}
   .dr-ribbon a{display:block; margin-top:4px;}
 }
+
+/* ─── Reduced-data / save-data mode ────────────────────────────────────
+   Some users (Lite Mode on Android Chrome, Opera Mini, slow ISPs) request
+   data-saving. Skip the heavy mandala portrait when they do — we drop the
+   portrait ring and keep just the smaller picture.
+─────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-data: reduce) {
+  .portrait-ring { display: none; }
+  .grain { display: none; }
+}
+
+/* ─── Print stylesheet ─────────────────────────────────────────────────
+   Make the site print nicely on physical paper (some readers will).
+─────────────────────────────────────────────────────────────────────── */
+@media print {
+  :root { color-scheme: light; }
+  html, body { background: #fff !important; color: #000 !important; }
+  .grain, .portrait-ring, .lang-toggle, .dr-ribbon { display: none !important; }
+  .site-header, .site-nav { background: transparent !important; box-shadow: none !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+  .section { page-break-inside: avoid; }
+  .hero { page-break-after: always; }
+}

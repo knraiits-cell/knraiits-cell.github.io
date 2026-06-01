@@ -12,6 +12,7 @@
   "variants": {
     "main": {
       "_purpose": "Primary GitHub Pages site at knraiits-cell.github.io (and CNAMEd to netineticharaiveticharaiveti.in)",
+      "base_url": "https://netineticharaiveticharaiveti.in",
       "title": "K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large",
       "robots_extra_meta": "",
@@ -29,9 +30,10 @@
 
     "mirror": {
       "_purpose": "GitHub Pages disaster-recovery mirror at knraiits-cell.github.io/netineti-mirror",
+      "base_url": "https://knraiits-cell.github.io/netineti-mirror",
       "title": "Mirror · K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti",
-      "robots": "index, follow, max-snippet:-1, max-image-preview:large",
-      "robots_extra_meta": "<meta name=\"robots\" content=\"noindex, follow\" />",
+      "robots": "noindex, follow",
+      "robots_extra_meta": "",
       "csp_connect_src": "'self'",
       "fingerprint_suffix": "-DR-MIRROR",
       "is_mirror": true,
@@ -50,6 +52,7 @@
 
     "perplexity_primary": {
       "_purpose": "Perplexity-hosted alternate primary (used as additional resilience layer)",
+      "base_url": "https://netineticharaiveticharaiveti.in",
       "title": "K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti (alt)",
       "robots": "noindex, follow",
       "robots_extra_meta": "",
@@ -67,6 +70,7 @@
 
     "perplexity_dr": {
       "_purpose": "Perplexity-hosted DR mirror — third resilience layer",
+      "base_url": "https://netineticharaiveticharaiveti.in",
       "title": "Mirror · K.N. Rai · Khalil Asgar — netineti charaiveti charaiveti (alt-DR)",
       "robots": "noindex, follow",
       "robots_extra_meta": "",

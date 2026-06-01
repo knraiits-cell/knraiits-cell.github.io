@@ -30,6 +30,8 @@ GitHub Actions out-of-the-box.
 import json
 import shutil
 import sys
+import hashlib
+import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent          # _source/
@@ -151,11 +153,69 @@ def build_variant(name: str, v: dict, template_html: str, template_js: str, css:
     for asset in (ROOT / "assets").iterdir():
         shutil.copy2(asset, out / "assets" / asset.name)
 
-    # Static files from the main site (robots.txt, _headers, offline.html, humans.txt)
-    for static_name in ("robots.txt", "_headers", "offline.html", "humans.txt"):
-        src = REPO / static_name
-        if src.exists():
-            shutil.copy2(src, out / static_name)
+    # humans.txt (copy verbatim from repo if present)
+    src_humans = REPO / "humans.txt"
+    if src_humans.exists():
+        shutil.copy2(src_humans, out / "humans.txt")
+
+    # _redirects (copy verbatim — same for every variant)
+    src_redirects = ROOT / "_redirects"
+    if src_redirects.exists():
+        shutil.copy2(src_redirects, out / "_redirects")
+
+    # ── render _headers per variant ─────────────────────────────────────
+    headers_tpl = (ROOT / "_headers.template").read_text(encoding="utf-8")
+    headers_out = (headers_tpl
+                   .replace("{{CSP_CONNECT_SRC}}", v["csp_connect_src"])
+                   .replace("{{ROBOTS}}", v["robots"])
+                   .replace("{{FP_SUFFIX}}", v.get("fingerprint_suffix", "")))
+    (out / "_headers").write_text(headers_out, encoding="utf-8")
+
+    # ── render manifest.webmanifest per variant ─────────────────────────
+    manifest_tpl = (ROOT / "manifest.template.webmanifest").read_text(encoding="utf-8")
+    manifest_out = (manifest_tpl
+                    .replace("{{MANIFEST_NAME}}", v["title"])
+                    .replace("{{MANIFEST_ID}}", "/?id=knr-nncc" + v.get("fingerprint_suffix", "")))
+    (out / "manifest.webmanifest").write_text(manifest_out, encoding="utf-8")
+
+    # ── render service worker per variant (cache-bust hash) ─────────────
+    sw_tpl = (ROOT / "sw.template.js").read_text(encoding="utf-8")
+    # cache version = short hash of HTML + CSS + JS — changes whenever content changes
+    hash_src = (
+        (ROOT / "index.template.html").read_text(encoding="utf-8")
+        + (ROOT / "style.css").read_text(encoding="utf-8")
+        + (ROOT / "main.js").read_text(encoding="utf-8")
+        + json.dumps(v, sort_keys=True)
+    )
+    cache_version = hashlib.sha256(hash_src.encode("utf-8")).hexdigest()[:10]
+    sw_out = sw_tpl.replace("{{CACHE_VERSION}}", cache_version)
+    (out / "sw.js").write_text(sw_out, encoding="utf-8")
+
+    # ── render offline.html (same across variants) ──────────────────────
+    offline_tpl = (ROOT / "offline.template.html").read_text(encoding="utf-8")
+    (out / "offline.html").write_text(offline_tpl, encoding="utf-8")
+
+    # ── render sitemap.xml per variant ──────────────────────────────────
+    sitemap_tpl = (ROOT / "sitemap.template.xml").read_text(encoding="utf-8")
+    base_url = v.get("base_url", "https://netineticharaiveticharaiveti.in")
+    lastmod = datetime.date.today().isoformat()
+    sitemap_out = (sitemap_tpl
+                   .replace("{{BASE_URL}}", base_url)
+                   .replace("{{LASTMOD}}", lastmod))
+    (out / "sitemap.xml").write_text(sitemap_out, encoding="utf-8")
+
+    # ── render robots.txt per variant ───────────────────────────────────
+    robots_tpl = (ROOT / "robots.template.txt").read_text(encoding="utf-8")
+    # If robots is "noindex, follow" we disallow indexing in robots.txt too;
+    # if it's "index, follow" we allow.
+    if "noindex" in v["robots"]:
+        robots_rules = "Disallow: /"
+    else:
+        robots_rules = "Allow: /"
+    robots_out = (robots_tpl
+                  .replace("{{BASE_URL}}", base_url)
+                  .replace("{{ROBOTS_RULES}}", robots_rules))
+    (out / "robots.txt").write_text(robots_out, encoding="utf-8")
 
     # Ensure .nojekyll exists (so GitHub Pages doesn't run Jekyll)
     (out / ".nojekyll").write_text("", encoding="utf-8")

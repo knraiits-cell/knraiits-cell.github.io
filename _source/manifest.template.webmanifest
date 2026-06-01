@@ -1,0 +1,37 @@
+{
+  "name": "{{MANIFEST_NAME}}",
+  "short_name": "K.N. Rai",
+  "description": "Krishna Nand Rai · Khalil Asgar (ख़लील अस्गर) — public servant, strategist, life coach, musician. neti neti, charaiveti charaiveti.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "background_color": "#040428",
+  "theme_color": "#14134d",
+  "lang": "en",
+  "dir": "ltr",
+  "id": "{{MANIFEST_ID}}",
+  "categories": ["personal", "lifestyle", "music", "education"],
+  "icons": [
+    { "src": "assets/favicon-16.png",  "sizes": "16x16",   "type": "image/png" },
+    { "src": "assets/favicon-32.png",  "sizes": "32x32",   "type": "image/png" },
+    { "src": "assets/favicon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-192.png",    "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png",    "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "neti neti, charaiveti charaiveti — home"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Music", "short_name": "Music", "url": "./#music", "description": "Listen on YouTube, Suno, Spotify, SoundCloud" },
+    { "name": "Connect", "short_name": "Connect", "url": "./#connect", "description": "Email, WhatsApp, social links" }
+  ]
+}

@@ -1,0 +1,9 @@
+# Netlify config — drop this in the repo root and Netlify auto-picks it up.
+# Free for personal sites; global CDN, IPv6 native, supports _redirects & _headers.
+
+[build]
+  command     = "python3 _source/build.py --variant main"
+  publish     = "_build/main"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
